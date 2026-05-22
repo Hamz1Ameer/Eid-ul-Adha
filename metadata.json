@@ -1,0 +1,6 @@
+{
+  "name": "Eid al-Adha Greetings",
+  "description": "Create, customize, and share beautiful personalized Eid al-Adha greeting cards with friends and family.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
