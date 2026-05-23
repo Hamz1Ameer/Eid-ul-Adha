@@ -3,7 +3,14 @@ import { WISH_PRESETS, THEME_PRESETS } from "./data";
 import { WishPreset, ThemePreset } from "./types";
 import CardPreview from "./components/CardPreview";
 import CardForm from "./components/CardForm";
-import { Moon, Sparkles, Heart, Gift, MessageSquare, ChevronDown } from "lucide-react";
+import {
+  Moon,
+  Sparkles,
+  Heart,
+  Gift,
+  MessageSquare,
+  ChevronDown,
+} from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 export default function App() {
@@ -13,8 +20,12 @@ export default function App() {
   const [wishId, setWishId] = useState("1");
   const [themeId, setThemeId] = useState("emerald");
   const [customMsg, setCustomMsg] = useState("");
-  const [slide1Msg, setSlide1Msg] = useState("As the sacred crescent graces the evening sky, we invite you to open this humble blessing of hope.");
-  const [slide3Msg, setSlide3Msg] = useState("May your sacrifices be accepted, and may your heart find absolute tranquillity.");
+  const [slide1Msg, setSlide1Msg] = useState(
+    "As the sacred crescent graces the evening sky, we invite you to open this humble blessing of hope.",
+  );
+  const [slide3Msg, setSlide3Msg] = useState(
+    "May your sacrifices be accepted, and may your heart find absolute tranquillity.",
+  );
 
   // Flow states
   const [didLoadQueryCard, setDidLoadQueryCard] = useState(false);
@@ -77,8 +88,12 @@ export default function App() {
       fromSet("Salim & Aisha");
       setWishId("1");
       setCustomMsg("");
-      setSlide1Msg("As the sacred crescent graces the evening sky, we invite you to open this humble blessing of hope.");
-      setSlide3Msg("May your sacrifices be accepted, and may your heart find absolute tranquillity.");
+      setSlide1Msg(
+        "As the sacred crescent graces the evening sky, we invite you to open this humble blessing of hope.",
+      );
+      setSlide3Msg(
+        "May your sacrifices be accepted, and may your heart find absolute tranquillity.",
+      );
       setThemeId("emerald");
       setDidLoadQueryCard(false);
       setShowEditor(true);
@@ -92,22 +107,25 @@ export default function App() {
     }, 150);
   };
 
-  const activeWish: WishPreset = wishId === "custom"
-    ? {
-        id: "custom",
-        title: "Your Custom Blessing",
-        text: customMsg || "May the divine blessings of Allah bring you hope, faith, and joy on Eid al-Adha and forever.",
-        arabic: "تقبل الله منا ومنكم"
-      }
-    : (WISH_PRESETS.find((w) => w.id === wishId) || WISH_PRESETS[0]);
+  const activeWish: WishPreset =
+    wishId === "custom"
+      ? {
+          id: "custom",
+          title: "Your Custom Blessing",
+          text:
+            customMsg ||
+            "May the divine blessings of Allah bring you hope, faith, and joy on Eid al-Adha and forever.",
+          arabic: "تقبل الله منا ومنكم",
+        }
+      : WISH_PRESETS.find((w) => w.id === wishId) || WISH_PRESETS[0];
 
-  const activeTheme = THEME_PRESETS.find((t) => t.id === themeId) || THEME_PRESETS[0];
+  const activeTheme =
+    THEME_PRESETS.find((t) => t.id === themeId) || THEME_PRESETS[0];
 
   return (
     <div className="min-h-screen pattern-bg text-amber-100/90 flex flex-col font-sans selection:bg-amber-500/30 selection:text-amber-200">
-      
       {/* --- TOP FIXED DECORATIVE ATMOSPHERE --- */}
-      <div className="absolute top-0 inset-x-0 h-[400px] bg-gradient-to-b from-amber-500/5 to-transparent pointer-events-none z-0" />
+      <div className="absolute top-0 inset-x-0 h-[400px] bg-linear-to-b from-amber-500/5 to-transparent pointer-events-none z-0" />
 
       {/* --- HEADER --- */}
       <header className="border-b border-amber-900/30 bg-[#022c22]/85 backdrop-blur-md sticky top-0 z-50 py-3.5 px-4 sm:px-10">
@@ -202,23 +220,80 @@ export default function App() {
               className="max-w-6xl mx-auto w-full flex flex-col gap-8 md:gap-11"
               ref={editorRef}
             >
-              {/* Interactive introduction heading */}
-              <div className="text-center space-y-2 max-w-xl mx-auto py-2">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-amber-400/10 border border-amber-400/20 text-amber-400">
-                  <Gift className="w-3 h-3 text-amber-400" />
-                  <span>Blessing Engine</span>
-                </div>
-                <h1 className="text-3xl md:text-4xl font-bold font-serif-ornate tracking-wide text-amber-100">
-                  Personalize Eid al-Adha Blessings
-                </h1>
-                <p className="text-xs sm:text-sm text-white/50 max-w-md mx-auto leading-relaxed">
-                  Generate customized greeting links featuring the recipient's name and handpicked themes. Share directly on WhatsApp or copy the link instantly.
-                </p>
-              </div>
+              {/* Premium interactive intro */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="relative text-center max-w-3xl mx-auto pt-2 pb-4"
+              >
+                {/* Ambient glow */}
+                <div className="absolute inset-0 -z-10 blur-3xl bg-amber-400/5 rounded-full" />
 
+                {/* Floating badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.15 }}
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-400/20 bg-amber-400/10 backdrop-blur-md"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+
+                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-amber-300">
+                    Eid al-Adha 1447
+                  </span>
+                  <Gift className="w-3 h-3 text-amber-400" />
+                </motion.div>
+
+                {/* Main title */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-5 text-4xl md:text-6xl leading-[1.1] font-serif-ornate font-bold tracking-tight"
+                >
+                  <span className="text-amber-50">Craft Beautiful</span>
+
+                  <br />
+
+                  <span className="bg-linear-to-r from-amber-300 via-yellow-200 to-amber-500 bg-clip-text text-transparent">
+                    Eid Blessings
+                  </span>
+                </motion.h1>
+
+                {/* Subtitle */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.35 }}
+                  className="mt-5 max-w-xl mx-auto text-sm md:text-base leading-relaxed text-white/55"
+                >
+                  Personalize heartfelt greeting cards with elegant Islamic
+                  themes, custom duas, and shareable WhatsApp blessings for your
+                  loved ones.
+                </motion.p>
+
+                {/* Tiny feature pills */}
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.45 }}
+                  className="mt-6 flex flex-wrap justify-center gap-2"
+                >
+                  {["Live Preview", "Custom Messages", "WhatsApp Sharing"].map(
+                    (item) => (
+                      <div
+                        key={item}
+                        className="px-3 py-1 rounded-full text-[11px] bg-white/[0.03] border border-white/10 text-white/50"
+                      >
+                        {item}
+                      </div>
+                    ),
+                  )}
+                </motion.div>
+              </motion.div>
               {/* Responsively Splitting layout */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-                
                 {/* Visualizer - Premium 7-column layout on desktop */}
                 <div className="col-span-12 lg:col-span-7 lg:sticky lg:top-24 space-y-4 flex flex-col justify-center items-center">
                   <div className="text-center">
@@ -229,7 +304,7 @@ export default function App() {
                       How your recipients see this blessing in real-time.
                     </p>
                   </div>
-                  
+
                   {/* Card wrapper */}
                   <div className="w-full max-w-md p-1.5 rounded-[40px] bg-emerald-950/20 border border-emerald-800/40 flex items-center justify-center shadow-lg shadow-emerald-950/25">
                     <CardPreview
@@ -263,7 +338,6 @@ export default function App() {
                     onSlide3MsgChange={setSlide3Msg}
                   />
                 </div>
-
               </div>
             </motion.div>
           )}
@@ -273,7 +347,9 @@ export default function App() {
       {/* --- FOOTER STATEMENT --- */}
       <footer className="border-t border-white/5 bg-black/10 py-6 text-center text-white/30 text-xs">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© 2026 Eid Greetings. Wishing you endless abundance, hope, and joy.</p>
+          <p>
+            © 2026 Eid Greetings. Wishing you endless abundance, hope, and joy.
+          </p>
           <div className="flex gap-4 items-center">
             <span className="hover:text-amber-400/80 transition flex items-center gap-1.5">
               <MessageSquare className="w-3.5 h-3.5" />
